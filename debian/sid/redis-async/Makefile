@@ -2,7 +2,7 @@ REPO := fooinha
 
 NAME := suricata-experimental
 
-TAG := debian-sid-redis-async-package
+TAG := sid-redis-async
 
 all: build
 

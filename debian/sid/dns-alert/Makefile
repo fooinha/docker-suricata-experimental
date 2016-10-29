@@ -2,7 +2,7 @@ REPO := fooinha
 
 NAME := suricata-experimental
 
-TAG := debian-sid-dns-alert-package
+TAG := sid-dns-alert
 
 all: build
 

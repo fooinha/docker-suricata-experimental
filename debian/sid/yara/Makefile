@@ -2,7 +2,7 @@ REPO := fooinha
 
 NAME := suricata-experimental
 
-TAG := debian-sid-yara-package
+TAG := sid-yara
 
 all: build
 

@@ -1,4 +1,4 @@
-FROM fooinha/suricata-experimental:debian-sid-build
+FROM fooinha/suricata-experimental:sid-build
 MAINTAINER fooinha <fooinha@gmail.com>
 ARG MAINTANER_NAME=fooinha
 ARG MAINTANER_EMAIL=fooinha@gmail.com

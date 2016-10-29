@@ -2,7 +2,7 @@ REPO := fooinha
 
 NAME := suricata-experimental
 
-TAG := debian-sid-kafka-package
+TAG := sid-kafka
 
 all: build
 

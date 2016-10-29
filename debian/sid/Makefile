@@ -2,7 +2,7 @@ REPO := fooinha
 
 NAME := suricata-experimental
 
-TAG := debian-sid-build
+TAG := sid-build
 
 all: build
 

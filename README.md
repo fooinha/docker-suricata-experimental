@@ -17,7 +17,7 @@ Dockerfiles for experimental versions of suricata 3.2
  
 ### sid-redis-async
  
- - EVE output log to redis using hiredis async API and with libevent adapter.
+ - EVE output log to redis using hiredis async API with libevent adapter.
  
 ### sid-yara
 

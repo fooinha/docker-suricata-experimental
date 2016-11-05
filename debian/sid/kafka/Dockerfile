@@ -8,7 +8,7 @@ ARG SURICATA_FEATURE=kafka
 ARG SURICATA_DEBIAN_SID_VERSION=3.1.2-2
 ARG SURICATA_DEBIAN_EXPERIMENTAL_VERSION=3.2.0-1+beta1~${SURICATA_FEATURE}
 ARG SURICATA_GIT_REPO=https://github.com/fooinha/suricata.git
-ARG SURICATA_GIT_BRANCH=dev-eve-ouput-kafka-v2
+ARG SURICATA_GIT_BRANCH=dev-ouput-kafka
 ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta with kafka output."
 ARG EXTRA_DEV_PACKAGES=librdkafka-dev
 ARG EXTRA_CONFIGURE=--enable-rdkafka
@@ -57,7 +57,64 @@ RUN sed -i -e 's/#  partition: -1/   partition: 0/' suricata.yaml.in
 # Build package
 RUN ./debian/rules binary
 
-# Get package information
-RUN dpkg -I ../suricata_${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}_amd64.deb
+RUN apt-get remove -y \
+    devscripts \
+    make \
+    autoconf \
+    automake \
+    dh-autoreconf \
+    libtool \
+    libpcap-dev \
+    libnet1-dev \
+    libyaml-0-2 \
+    libyaml-dev \
+    zlib1g-dev \
+    libcap-ng-dev \
+    libpcre3-dbg \
+    libpcre3-dev \
+    libmagic-dev \
+    libnetfilter-queue-dev \
+    libnetfilter-queue1 \
+    libnfnetlink-dev \
+    libnetfilter-log-dev \
+    libprelude-dev \
+    libnfnetlink0 \
+    libjansson-dev \
+    libnss3-dev \
+    libnspr4-dev \
+    libgeoip-dev \
+    libluajit-5.1-common \
+    libluajit-5.1-dev \
+    libhiredis-dev \
+    valgrind-dbg \
+    vim vim-common vim-runtime xxd
 
-CMD ["/bin/bash"]
+RUN apt-get -y install oinkmaster
+
+RUN dpkg -i ../suricata_${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}_amd64.deb || true
+
+RUN dpkg -i ../suricata-oinkmaster_${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}_all.deb || true
+
+RUN mkdir -p /packages/
+
+RUN mv ../*.deb /packages/.
+
+RUN apt-get -y -f install
+
+RUN apt-get -y autoremove
+
+RUN apt-get -y install supervisor psmisc procps
+
+RUN mkdir -p /var/log/suricata /var/log/supervisor
+
+RUN mkdir -p /var/run/suricata
+
+RUN /etc/cron.daily/suricata-oinkmaster-updater || true
+
+RUN rm -rf /root/* /var/lib/apt/lists/*
+
+WORKDIR /var/log/suricata
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]

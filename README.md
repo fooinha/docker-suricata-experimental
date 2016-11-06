@@ -34,11 +34,13 @@ Dockerfiles for experimental versions of suricata 3.2
 ### Packages
 Built debian sid packages are placed in the /packages directory.
 
+```bash
 $ ls -lh /packages/
 total 8.7M
 -rw-r--r-- 1 root root 7.7M Oct 31 19:39 suricata-dbg_3.2.0-1+beta1~yara_amd64.deb
 -rw-r--r-- 1 root root  27K Oct 31 19:39 suricata-oinkmaster_3.2.0-1+beta1~yara_all.deb
 -rw-r--r-- 1 root root 977K Oct 31 19:39 suricata_3.2.0-1+beta1~yara_amd64.deb
+```
 
 ### Processes running
 

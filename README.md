@@ -44,6 +44,8 @@ total 8.7M
 
 ### Processes running
 
+```bash
   PID CMD
     1 /usr/bin/python /usr/bin/supervisord
     7 /usr/bin/suricata -c /etc/suricata/suricata.yaml --pidfile /var/run/suricata.pid -i eth0 --af-packet
+```

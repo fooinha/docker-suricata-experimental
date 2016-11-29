@@ -4,7 +4,7 @@ ARG MAINTANER_NAME=fooinha
 ARG MAINTANER_EMAIL=fooinha@gmail.com
 
 # Build arguments
-ARG SURICATA_FEATURE=kafka
+ARG SURICATA_FEATURE=tls-http2
 ARG SURICATA_DEBIAN_SID_VERSION=3.1.3-3
 ARG SURICATA_DEBIAN_EXPERIMENTAL_VERSION=3.2.0-1+beta1~${SURICATA_FEATURE}
 ARG SURICATA_GIT_REPO=https://github.com/fooinha/suricata.git
@@ -45,14 +45,6 @@ RUN git clone -v https://github.com/OISF/libhtp
 
 # Changelog
 RUN DEBFULLNAME=${MAINTANER_NAME} DEBEMAIL=${MAINTANER_EMAIL} dch  -v ${SURICATA_DEBIAN_EXPERIMENTAL_VERSION} -D unstable "${SURICATA_DEBIAN_CHANGELOG_ENTRY}"
-
-# Configure with default filetype to kafka
-RUN sed -i -e 's/filetype: regular #regular/filetype: kafka #regular/' suricata.yaml.in
-RUN sed -i -e 's/#kafka/kafka/' suricata.yaml.in
-RUN sed -i -e 's/#  broker-list: 127.0.0.1:9092/   broker-list: kafka:9092/' suricata.yaml.in
-RUN sed -i -e 's/#  topic: suricata/   topic: suricata/' suricata.yaml.in
-RUN sed -i -e 's/#  compression: snappy/   compression: snappy/' suricata.yaml.in
-RUN sed -i -e 's/#  partition: -1/   partition: 0/' suricata.yaml.in
 
 # Build package
 RUN ./debian/rules binary

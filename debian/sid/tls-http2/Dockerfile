@@ -4,14 +4,14 @@ ARG MAINTANER_NAME=fooinha
 ARG MAINTANER_EMAIL=fooinha@gmail.com
 
 # Build arguments
-ARG SURICATA_FEATURE=yara
+ARG SURICATA_FEATURE=tls-http2
 ARG SURICATA_DEBIAN_SID_VERSION=3.1.3-3
 ARG SURICATA_DEBIAN_EXPERIMENTAL_VERSION=3.2.0-1+beta1~${SURICATA_FEATURE}
 ARG SURICATA_GIT_REPO=https://github.com/fooinha/suricata.git
-ARG SURICATA_GIT_BRANCH=dev-yara-rules-v2
-ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta with yara rules"
-ARG EXTRA_DEV_PACKAGES=libyara-dev
-ARG EXTRA_CONFIGURE=--enable-yara
+ARG SURICATA_GIT_BRANCH=dev-tls-keywords-for-http2
+ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta with useful rule keywords for http/2"
+ARG EXTRA_DEV_PACKAGES=
+ARG EXTRA_CONFIGURE=
 
 # Update
 RUN DEBIAN_FRONTEND=noninteractive apt-get update

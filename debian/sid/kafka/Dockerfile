@@ -14,7 +14,7 @@ ARG EXTRA_DEV_PACKAGES=librdkafka-dev
 ARG EXTRA_CONFIGURE=--enable-rdkafka
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 # Install build dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \

@@ -14,7 +14,7 @@ ARG EXTRA_DEV_PACKAGES=
 ARG EXTRA_CONFIGURE=
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 # Install build dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \
@@ -35,8 +35,6 @@ RUN xz -d suricata_${SURICATA_DEBIAN_SID_VERSION}.debian.tar.xz ; tar xvf surica
 
 # Copy debian directory to build dir
 RUN mv debian suricata-${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}/
-
-RUN sed -i -e 's/--enable-hiredis/--enable-hiredis ${EXTRA_CONFIGURE}/' suricata-${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}/debian/rules
 
 WORKDIR /root/suricata-${SURICATA_DEBIAN_EXPERIMENTAL_VERSION}/
 

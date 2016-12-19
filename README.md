@@ -23,6 +23,10 @@ Dockerfiles for experimental versions of suricata 3.2
 
  - Support yara rules matching for suricata rules. Available for protocols where is possible do file extraction.
 
+### analyzer-json
+
+ - JSON output format for rule engine analyzer.
+
 
 ## Container contents
 

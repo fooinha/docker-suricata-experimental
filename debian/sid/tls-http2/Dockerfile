@@ -14,7 +14,7 @@ ARG EXTRA_DEV_PACKAGES=
 ARG EXTRA_CONFIGURE=
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 # Install build dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \

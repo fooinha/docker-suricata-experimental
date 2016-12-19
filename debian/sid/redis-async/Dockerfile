@@ -13,7 +13,7 @@ ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta 
 ARG EXTRA_DEV_PACKAGES="libevent-dev"
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 # Install build dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \

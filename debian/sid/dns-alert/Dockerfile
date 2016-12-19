@@ -12,7 +12,7 @@ ARG SURICATA_GIT_BRANCH=dev-output-dns-compact-alert-v2
 ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta with DNS alerts"
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 WORKDIR /root
 

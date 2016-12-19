@@ -11,7 +11,7 @@ RUN echo "deb http://${DEBIAN_REPO_HOST}/debian sid main" > /etc/apt/sources.lis
 RUN echo "deb-src http://${DEBIAN_REPO_HOST}/debian sid main" >> /etc/apt/sources.list
 
 # Update
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get update || true
 
 # Install build dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \

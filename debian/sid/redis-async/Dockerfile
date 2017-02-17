@@ -5,11 +5,11 @@ ARG MAINTANER_EMAIL=fooinha@gmail.com
 
 # Build arguments
 ARG SURICATA_FEATURE=redis-async
-ARG SURICATA_DEBIAN_SID_VERSION=3.1.3-3
-ARG SURICATA_DEBIAN_EXPERIMENTAL_VERSION=3.2.0-1+beta1~${SURICATA_FEATURE}
+ARG SURICATA_DEBIAN_SID_VERSION=3.1.1-4ubuntu1
+ARG SURICATA_DEBIAN_EXPERIMENTAL_VERSION=3.2.1-1+experimental~${SURICATA_FEATURE}
 ARG SURICATA_GIT_REPO=https://github.com/fooinha/suricata.git
 ARG SURICATA_GIT_BRANCH=dev-eve-output-redis-async-v4
-ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.0beta with async redis"
+ARG SURICATA_DEBIAN_CHANGELOG_ENTRY="Experimental version of suricata 3.2.1 with async redis"
 ARG EXTRA_DEV_PACKAGES="libevent-dev"
 
 # Update
